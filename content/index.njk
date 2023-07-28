@@ -1,0 +1,31 @@
+---
+layout: base
+eleventyExcludeFromCollections: true
+pagination:
+  data: collections.articles
+  size: 10
+  alias: items
+permalink: "{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1 }}{% endif %}/"
+---
+
+{%- set totalPages = pagination.pages|length -%}
+{%- set currentPage = pagination.pageNumber + 1 -%}
+{%- set previousHref = pagination.href.previous -%}
+{%- set nextHref = pagination.href.next -%}
+
+<header class="main-heading">
+  <h1>{{ phrases.latestArticles }}{%- if pagination.pageNumber > 0 -%}, {{ phrases.page }} {{ currentPage }} {{ phrases.of }} {{ totalPages }} {%- endif -%}&nbsp;&darr;</h1>
+</header>
+
+{% for item in items %}
+  {% set link = item.link %}
+  {% set title = item.title %}
+  {% set avatar = item.avatar %}
+  {% set authorUrl = item.author.url %}
+  {% set authorName = item.author.name %}
+  {% set published = item.published|readableDate %}
+  {% set description = item.description | safe %}
+  {% include "partials/post.njk" %}
+{% endfor %}
+
+{% include "partials/pagination.njk" %}

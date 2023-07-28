@@ -1,0 +1,20 @@
+name: Update site
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *" # Every day at 2am. Modify this as you see fit
+
+jobs:
+  DeploySite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy site
+        uses: lwojcik/github-action-deploy-static-site@v1
+        with:
+          platform: vercel
+          netlify_deploy_hook_url: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+          always_deploy: true
+          # Using Netlify? Configure this action as follows:
+          # platform: netlify
+          # netlify_deploy_hook_url: ${{ secrets.NETLIFY_DEPLOY_HOOK_URL }}
+          # always_deploy: true

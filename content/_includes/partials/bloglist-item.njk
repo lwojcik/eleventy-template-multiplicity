@@ -1,0 +1,11 @@
+<li>
+  <h2 class="blog-name">
+    <img width="22" height="22" class="avatar" src="{{ site.data.avatar }}" alt="{{ site.data.name }}{{ phrases.sAvatar }}" />
+    <a href="{{ site.data.url }}">
+      {{ site.data.name }}
+    </a>
+  </h2>
+  <div class="rss">
+    {% include "svg/rss.svg" %} <a href="{{ site.data.feed }}">{{ phrases.rssFeed }}</a>
+  </div>
+</li>

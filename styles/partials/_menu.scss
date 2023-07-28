@@ -1,0 +1,103 @@
+.menu-wrapper {
+  font-family: var(--sans-serif);
+  background-color: #191818;
+  color: #ededed;
+  margin-bottom: 1em;
+  -webkit-font-smoothing: antialiased;
+  height: 44px;
+  overflow: hidden;
+  transition: height 0.3s;
+  display: flex;
+  align-items: center;
+
+  .custom-menu-3 {
+    display: none;
+  }
+
+  &.open {
+    height: 14rem;
+
+    .custom-menu-3 {
+      display: block;
+    }
+  }
+
+  li {
+    line-height: 1;
+    font-size: 1.25rem;
+  }
+
+  .site-title {
+    display: inline-block;
+    font-size: 1.3rem;
+    padding: 0.6rem 1rem;
+    color: #bbb;
+    height: 100%;
+
+    &:hover,
+    &:focus {
+      color: #ededed;
+    }
+  }
+
+  .pure-menu-link {
+    font-family: var(--sans-serif);
+    color: #999;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      color: #ededed;
+      background-color: transparent;
+    }
+  }
+}
+
+.custom-menu-3 {
+  text-align: right;
+}
+
+.custom-toggle {
+  cursor: pointer;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+
+.custom-toggle .bar {
+  background-color: #777;
+  display: block;
+  width: 2rem;
+  height: 2px;
+  position: absolute;
+  top: 22px;
+  right: 7px;
+  transition: all 0.3s;
+}
+
+.custom-toggle .bar:first-child {
+  transform: translateY(-6px);
+}
+
+.custom-toggle.x .bar {
+  transform: rotate(45deg);
+}
+
+.custom-toggle.x .bar:first-child {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 47.999em) {
+  .custom-menu-3 {
+    text-align: left;
+  }
+
+  .custom-toggle {
+    display: block;
+    height: 44px;
+  }
+}

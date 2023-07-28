@@ -1,0 +1,51 @@
+body {
+  font-size: var(--base-size);
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--sans-serif);
+  line-height: 1.2;
+
+  a {
+    color: var(--text-color);
+  }
+}
+
+h2 {
+  font-size: 2.125rem;
+}
+
+h3 {
+  font-size: 1.875rem;
+}
+
+p,
+li {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.75;
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.675rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}

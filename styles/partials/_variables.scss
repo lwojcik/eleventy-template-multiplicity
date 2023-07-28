@@ -1,0 +1,44 @@
+:root {
+  --serif: Georgia, Times, "Times New Roman", serif;
+  --sans-serif: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --base-size: 16px;
+  --black: #222;
+  --white: #f5f5f5;
+  --lighter-gray: #ddd;
+  --light-gray: #999;
+  --dark-gray: #666;
+  --darker-gray: #333;
+}
+
+@mixin lightModeColors {
+  --background-color: var(--white);
+  --text-color: var(--black);
+  --date-color: var(--dark-gray);
+  --pagination-inactive-color: var(--light-gray);
+  --pagination-active-color: var(--black);
+}
+
+@mixin darkModeColors {
+  --background-color: var(--black);
+  --text-color: var(--lighter-gray);
+  --date-color: var(--light-gray);
+  --pagination-inactive-color: var(--darker-gray);
+  --pagination-active-color: var(--white);
+}
+
+:root,
+html:not(.dark) {
+  @include lightModeColors;
+}
+
+html.dark {
+  @include darkModeColors;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
+  html:not(.light),
+  html.dark {
+    @include darkModeColors;
+  }
+}

@@ -1,0 +1,7 @@
+<div class="bloglist">
+  <ul>
+  {% for site in collections.sites %}
+    {% include "partials/bloglist-item.njk" %}
+  {% endfor %}
+  </ul>
+</div>
