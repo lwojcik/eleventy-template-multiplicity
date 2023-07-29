@@ -1,4 +1,4 @@
-const { extract } = require("@extractus/feed-extractor");
+const feedExtractor = import("@extractus/feed-extractor");
 const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const cacheAvatar = require("./_11ty/helpers/cacheAvatar");
@@ -37,6 +37,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("articles", async function (collectionApi) {
     try {
+      const { extract } = await feedExtractor;
       const blogs = collectionApi.getFilteredByTag("site");
 
       const allSiteFeeds = blogs.map(async (blog) => {
@@ -68,7 +69,7 @@ module.exports = function (eleventyConfig) {
 
       return sortedItems;
     } catch (error) {
-      console.log(erorr);
+      console.log(error);
       throw new Error(error);
     }
   });

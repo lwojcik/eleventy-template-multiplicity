@@ -19,16 +19,16 @@
   "dependencies": {
     "@11ty/eleventy": "2.0.1",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
-    "@extractus/feed-extractor": "6.2.4",
+    "@extractus/feed-extractor": "^7.0.1",
     "eleventy-plugin-gen-favicons": "^1.1.2",
     "html-minifier-terser": "^7.2.0",
     "luxon": "^3.3.0",
-    "minify-xml": "^3.4.0",
+    "minify-xml": "^4.0.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^5.0.0",
-    "sass": "^1.59.3",
+    "rimraf": "^5.0.1",
+    "sass": "^1.64.1",
     "sharp": "^0.32.4",
-    "slugify": "1.6.6",
-    "terser": "^5.19.1"
+    "slugify": "^1.6.6",
+    "terser": "^5.19.2"
   }
 }
