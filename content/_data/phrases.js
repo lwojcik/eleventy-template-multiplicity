@@ -4,8 +4,8 @@ module.exports = {
   of: "of",
   rssFeed: "RSS Feed",
   sAvatar: "'s avatar",
-  newerArticles: "Newer articles",
-  olderArticles: "Older articles",
+  newerArticles: "Newer",
+  olderArticles: "Older",
   menu: {
     sites: "Sites",
     about: "About",
