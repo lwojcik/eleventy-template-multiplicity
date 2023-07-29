@@ -1,15 +1,21 @@
 <article class="article">
-<h2 class="post-title"><a href="{{ link }}">{{ title }}</a></h2>
-
-<div class="post-meta">
   <a href="{{ authorUrl }}" class="author">
     <img width="18" height="18" src="{{ avatar }}" alt="{{ authorName }}{{ phrases.sAvatar }}" />
     <span>{{ authorName }}</span>
   </a>
-  <time>
-    {% include "svg/calendar.svg" %}
-    <span>{{ published }}</span>
-  </time>
-</div>
-<p>{{ item.description | safe }}</p>
+
+  <h2 class="post-title">
+    <a href="{{ link }}">
+      {{ title }}
+    </a>
+  </h2>
+
+  <div class="post-meta">
+    <time>
+      {% include "svg/calendar.svg" %}
+      <span>{{ published }}</span>
+    </time>
+  </div>
+
+  <p>{{ item.description | safe }}</p>
 </article>
