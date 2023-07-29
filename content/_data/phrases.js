@@ -10,6 +10,6 @@ module.exports = {
     sites: "Sites",
     about: "About",
     rss: "RSS",
-    togggleTheme: "Toggle theme",
+    toggleTheme: "Toggle theme",
   },
 };
