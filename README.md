@@ -1,6 +1,6 @@
-# Multiplicity - RSS Aggregator Starter Based On Eleventy
+# M10y - RSS Aggregator Starter Based On Eleventy
 
-**Multiplicity** is a simple starter pack based on [Eleventy static site generator](https://11ty.dev) that allows you to create RSS aggregator site.
+**M10y** (abbreviation for 'multiplicity') is a simple starter pack based on [Eleventy static site generator](https://11ty.dev) that allows you to create RSS aggregator site.
 
 Alongside the template code, it also contains a GitHub action required to keep the site up to date.
 
@@ -12,11 +12,11 @@ Want to see in in action? Check out [Blogworm.eu](https://blogworm.eu/).
 
 Netlify:
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/lwojcik/eleventy-template-multiplicity)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/lwojcik/eleventy-template-m10y)
 
 Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/lwojcik/eleventy-template-multiplicity)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/lwojcik/eleventy-template-m10y)
 
 ## Features
 
