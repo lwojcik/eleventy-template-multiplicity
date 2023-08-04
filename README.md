@@ -4,7 +4,7 @@
 
 Alongside the template code, it also contains a GitHub action required to keep the site up to date.
 
-[View demo](https://eleventy-multiplicity.lkmt.us/)
+[View demo](https://11ty-m10y.lkmt.us/)
 
 Want to see in in action? Check out [Blogworm.eu](https://blogworm.eu/).
 
