@@ -21,6 +21,7 @@
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@extractus/feed-extractor": "^7.0.1",
     "eleventy-plugin-gen-favicons": "^1.1.2",
+    "eleventy-plugin-pwa-v2": "^1.0.0",
     "html-minifier-terser": "^7.2.0",
     "luxon": "^3.3.0",
     "minify-xml": "^4.0.0",
