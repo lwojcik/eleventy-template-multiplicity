@@ -5,4 +5,4 @@ eleventyExcludeFromCollections: true
 permalink: /about/
 ---
 
-This is an About page. Add whatever you want here.
+This is an sample site based on [M10y - Eleventy-based RSS aggregator template](https://github.com/lwojcik/eleventy-template-m10y).
