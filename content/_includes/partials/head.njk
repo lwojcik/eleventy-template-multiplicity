@@ -21,5 +21,25 @@
 <meta name="generator" content="{{ siteConfig.generator.name }} v{{ siteConfig.generator.version }}">
 {% favicons 'assets/favicon.svg', appleIconBgColor='#000' %}
 {%- if siteConfig.enablePWA -%}
-<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/service-worker.js');</script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed') {
+            if (navigator.serviceWorker.controller) {
+              window.location.reload();
+            }
+          }
+        });
+      });
+    })
+    .catch(error => {
+      console.error('Service Worker registration failed:', error);
+    });
+}
+</script>
 {%- endif -%}
