@@ -21,8 +21,8 @@ const FILE_EXTENSIONS_NOT_TO_RESIZE = ["svg", "ico"];
 
 module.exports = async ({ url, name }) => {
   try {
-    if (!url.startsWith("https://")) {
-      return DEFAULT_AVATAR_PATH;
+    if (url.startsWith("/")) {
+      return url;
     }
 
     const response = await fetch(url);
