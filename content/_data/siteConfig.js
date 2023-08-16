@@ -8,6 +8,7 @@ module.exports = {
   github: {
     project: "https://github.com/lwojcik/eleventy-template-multiplicity",
   },
+  userAgent: "m10y-https://eleventy-m10y.lkmt.us",
   language: "en",
   generator: {
     name: "Eleventy",
