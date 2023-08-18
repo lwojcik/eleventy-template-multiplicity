@@ -20,9 +20,9 @@
 <script src="{{ '/js/scripts.js' | addHash }}"></script>
 <meta name="generator" content="{{ siteConfig.generator.name }} v{{ siteConfig.generator.version }}">
 {% favicons 'assets/favicon.svg', appleIconBgColor='#000' %}
-{%- if siteConfig.enablePWA -%}
 <script>
 if ('serviceWorker' in navigator) {
+{%- if siteConfig.enablePWA -%}
   navigator.serviceWorker.register('/service-worker.js')
     .then(registration => {
       registration.addEventListener('updatefound', () => {
@@ -40,6 +40,12 @@ if ('serviceWorker' in navigator) {
     .catch(error => {
       console.error('Service Worker registration failed:', error);
     });
+{%- else -%}
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+        registration.unregister();
+    } 
+  });
+{%- endif -%}
 }
 </script>
-{%- endif -%}

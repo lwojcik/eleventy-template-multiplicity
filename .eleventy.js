@@ -117,7 +117,7 @@ module.exports = function (eleventyConfig) {
 
   if (siteConfig.enablePWA) {
     eleventyConfig.addPlugin(pluginPWA, {
-      cacheId: "blognik",
+      cacheId: "multiplicity",
       runtimeCaching: [
         {
           urlPattern: /\/$/,
