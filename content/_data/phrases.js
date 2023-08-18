@@ -12,4 +12,5 @@ module.exports = {
     rss: "RSS",
     toggleTheme: "Toggle theme",
   },
+  skip_to_main_content: "Skip to main content",
 };
