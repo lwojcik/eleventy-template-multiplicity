@@ -19,5 +19,5 @@ module.exports = {
   },
   maxPostLength: 500, // how many characters per each post excerpt?
   maxItemsPerFeed: 10, // how many items should be fetched from each feed?
-  enablePWA: false, // If true, service worker is registered to make the site behave like a mobile app (PWA)
+  enablePWA: true, // If true, service worker is registered to make the site behave like a mobile app (PWA)
 };
