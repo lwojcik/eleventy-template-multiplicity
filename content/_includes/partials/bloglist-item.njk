@@ -1,3 +1,4 @@
+{% if site.data.hideFromBlogList != true %}
 <li>
   <h2 class="blog-name">
     <img width="22" height="22" class="avatar" src="{{ site.data.avatar }}" alt="{{ site.data.name }}{{ phrases.sAvatar }}" />
@@ -13,3 +14,4 @@
     {% endif %}
   </div>
 </li>
+{% endif %}
