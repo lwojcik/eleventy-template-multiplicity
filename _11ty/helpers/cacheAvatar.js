@@ -1,8 +1,11 @@
-const fetch = require("node-fetch");
 const fs = require("fs");
 const path = require("path");
+const EleventyFetch = require("@11ty/eleventy-fetch");
+const imageType = import("image-type");
+const isSvg = import("is-svg");
 const slugify = require("./slugify");
 const sharp = require("sharp");
+const siteConfig = require("../../content/_data/siteConfig");
 
 const DIST_PATH = "_site";
 const AVATAR_DIR = path.join("images", "avatars");
@@ -20,29 +23,38 @@ const FILE_EXTENSIONS = {
 const FILE_EXTENSIONS_NOT_TO_RESIZE = ["svg", "ico"];
 
 module.exports = async ({ url, name }) => {
+  const detectImageType = (await imageType).default;
+  const detectSvg = (await isSvg).default;
+
   try {
     if (url.startsWith("/")) {
       return url;
     }
 
-    const response = await fetch(url);
+    const imageBuffer = await EleventyFetch(url, {
+      duration: siteConfig.localCacheDuration,
+      verbose: process.env.ELEVENTY_ENV === "development",
+      fetchOptions: {
+        headers: {
+          "user-agent": siteConfig.userAgent,
+        },
+      },
+    });
 
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch the avatar: ${response.status} ${response.statusText}`
-      );
-    }
+    const isFileSvg = detectSvg(imageBuffer.toString());
 
-    const contentType = response.headers.get("content-type");
+    const { mime: contentType } = isFileSvg
+      ? { mime: "image/svg+xml" }
+      : await detectImageType(imageBuffer);
+
     const extension = FILE_EXTENSIONS[contentType];
 
     const fileName = `${slugify(name)}.${extension}`;
-    const buffer = await response.buffer();
 
-    let resizedBuffer = buffer;
+    let resizedBuffer = imageBuffer;
 
     if (!FILE_EXTENSIONS_NOT_TO_RESIZE.includes(extension)) {
-      const image = sharp(buffer);
+      const image = sharp(imageBuffer);
       const metadata = await image.metadata();
       if (metadata.width > 64 || metadata.height > 64) {
         resizedBuffer = await image.resize(64, 64).toBuffer();

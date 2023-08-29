@@ -3,10 +3,10 @@ const packageJson = require("../../package.json");
 module.exports = {
   title: "Multiplicity",
   description: "Eleventy-based RSS aggregator template",
-  author: "Multiple authors",
+  author: "Multiple Authors",
   url: "https://eleventy-m10y.lkmt.us/",
   github: {
-    project: "https://github.com/lwojcik/eleventy-template-multiplicity",
+    project: "https://github.com/lwojcik/eleventy-template-m10y",
   },
   userAgent: "m10y-https://eleventy-m10y.lkmt.us",
   language: "en",
@@ -17,7 +17,8 @@ module.exports = {
   dateFormats: {
     readable: "d LLL yyyy", // date format used alongside posts
   },
-  maxPostLength: 500, // how many characters per each post excerpt?
-  maxItemsPerFeed: 10, // how many items should be fetched from each feed?
+  maxPostLength: 500, // How many characters per each post excerpt?
+  maxItemsPerFeed: 10, // How many items should be fetched from each feed?
   enablePWA: true, // If true, service worker is registered to make the site behave like a mobile app (PWA)
+  localCacheDuration: "7d", // For how long should network calls be cached locally? See https://www.11ty.dev/docs/plugins/fetch/#change-the-cache-duration
 };
