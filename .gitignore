@@ -1,6 +1,7 @@
 ## Project
 dist/*
 _site/
+.cache
 
 ## Node.js
 lib-cov

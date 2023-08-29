@@ -1,3 +1,4 @@
+const EleventyFetch = require("@11ty/eleventy-fetch");
 const feedExtractor = import("@extractus/feed-extractor");
 const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
@@ -38,19 +39,43 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection("articles", async function (collectionApi) {
     try {
-      const { extract } = await feedExtractor;
-      const blogs = collectionApi.getFilteredByTag("site");
+      const extractor = await feedExtractor;
+      const blogs = collectionApi
+        .getFilteredByTag("site")
+        .filter((item) => !item.data.disabled);
 
       const allSiteFeeds = blogs.map(async (blog) => {
         const { data } = blog;
-        const { name, url, avatar, feed } = data;
+        const { name, url, avatar, feed, type: feedType } = data;
 
-        const feedContent = await extract(feed, {
-          descriptionMaxLen: siteConfig.maxPostLength,
-          headers: {
-            "user-agent": siteConfig.userAgent,
+        const feedData = await EleventyFetch(feed, {
+          duration: siteConfig.localCacheDuration,
+          type: feedType === "json" ? "json" : "text",
+          verbose: process.env.ELEVENTY_ENV === "development",
+          fetchOptions: {
+            headers: {
+              "user-agent": siteConfig.userAgent,
+            },
           },
         });
+
+        const extractOptions = {
+          getExtraEntryFields: (item) => {
+            if (!item.description) {
+              return {
+                description: stripAndTruncateHTML(
+                  item.content["#text"],
+                  siteConfig.maxPostLength
+                ),
+              };
+            }
+          },
+        };
+
+        const feedContent =
+          feedType === "json"
+            ? extractor.extractFromJson(feedData, extractOptions)
+            : extractor.extractFromXml(feedData, extractOptions);
 
         return feedContent.entries
           .map((entry) => ({
