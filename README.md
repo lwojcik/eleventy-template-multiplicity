@@ -46,6 +46,10 @@ Vercel:
 
 See [`phrases.js`](./content/_data/phrases.js) for the list of translatable static phrases.
 
+## Note for Netlify users
+
+The aggregator uses [eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/) plugin for fetching and caching network requests. If you use Netlify, you can limit number of network requests with Netlify cache mechanism - [see Eleventy docs on how to enable it](https://www.11ty.dev/docs/plugins/fetch/#running-this-on-your-build-server).
+
 ## Contributions
 
 Contributions of the following kind are welcome:
