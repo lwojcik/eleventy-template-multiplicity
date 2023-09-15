@@ -17,5 +17,11 @@
     </time>
   </div>
 
-  <p>{{ item.description | safe }}</p>
+  <p>
+    {% if item.htmlDescription %}
+      {{ item.htmlDescription }}
+    {% elif item.description %}
+      {{ item.description }}
+    {% endif %}
+  </p>
 </article>

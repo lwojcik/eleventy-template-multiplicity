@@ -2,7 +2,6 @@ const EleventyFetch = require("@11ty/eleventy-fetch");
 const feedExtractor = import("@extractus/feed-extractor");
 const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginPWA = require("eleventy-plugin-pwa-v2");
 const cacheAvatar = require("./_11ty/helpers/cacheAvatar");
 const addHash = require("./_11ty/helpers/addHash");
 const getFulfilledValues = require("./_11ty/helpers/getFulfilledValues");
@@ -10,6 +9,7 @@ const readableDate = require("./_11ty/helpers/readableDate");
 const minifyHTML = require("./_11ty/helpers/minifyHTML");
 const siteConfig = require("./content/_data/siteConfig");
 const minifyXML = require("./_11ty/helpers/minifyXML");
+const stripAndTruncateHTML = require("./_11ty/helpers/stripAndTruncateHTML");
 
 module.exports = function (eleventyConfig) {
   // --- Copy assets
@@ -45,49 +45,79 @@ module.exports = function (eleventyConfig) {
         .filter((item) => !item.data.disabled);
 
       const allSiteFeeds = blogs.map(async (blog) => {
-        const { data } = blog;
-        const { name, url, avatar, feed, type: feedType } = data;
+        try {
+          const { data } = blog;
+          const { name, url, avatar, feed, feedType } = data;
 
-        const feedData = await EleventyFetch(feed, {
-          duration: siteConfig.localCacheDuration,
-          type: feedType === "json" ? "json" : "text",
-          verbose: process.env.ELEVENTY_ENV === "development",
-          fetchOptions: {
-            headers: {
-              "user-agent": siteConfig.userAgent,
+          const feedData = await EleventyFetch(feed, {
+            duration: siteConfig.localCacheDuration,
+            type: feedType === "json" ? "json" : "text",
+            verbose: process.env.ELEVENTY_ENV === "development",
+            fetchOptions: {
+              headers: {
+                "user-agent": siteConfig.userAgent,
+              },
             },
-          },
-        });
+          });
 
-        const extractOptions = {
-          getExtraEntryFields: (item) => {
-            if (!item.description) {
-              return {
-                description: stripAndTruncateHTML(
-                  item.content["#text"],
-                  siteConfig.maxPostLength
-                ),
-              };
-            }
-          },
-        };
+          const extractOptions = {
+            getExtraEntryFields: (item) => {
+              try {
+                if (item.content["#text"]?.length > 0) {
+                  const htmlDescription = stripAndTruncateHTML(
+                    item.content["#text"],
+                    siteConfig.maxPostLength
+                  );
 
-        const feedContent =
-          feedType === "json"
-            ? extractor.extractFromJson(feedData, extractOptions)
-            : extractor.extractFromXml(feedData, extractOptions);
-
-        return feedContent.entries
-          .map((entry) => ({
-            ...entry,
-            avatar,
-            author: {
-              name,
-              url,
+                  return {
+                    htmlDescription,
+                  };
+                } else {
+                  return {
+                    htmlDescription: "",
+                  };
+                }
+              } catch (error) {
+                return {
+                  htmlDescription: "",
+                };
+              }
             },
-          }))
-          .sort((a, b) => new Date(b.published) - new Date(a.published))
-          .slice(0, siteConfig.maxItemsPerFeed);
+          };
+
+          const parsedFeedData =
+            feedType === "json" && typeof feedData === "string"
+              ? JSON.parse(feedData)
+              : feedData;
+
+          const feedContent =
+            feedType === "json"
+              ? {
+                  entries: parsedFeedData.items.map((item) => ({
+                    ...item,
+                    published: item.date_published,
+                    description: stripAndTruncateHTML(
+                      item.content_html,
+                      siteConfig.maxPostLength
+                    ),
+                  })),
+                }
+              : extractor.extractFromXml(feedData, extractOptions);
+
+          return feedContent.entries
+            .map((entry) => ({
+              ...entry,
+              avatar,
+              author: {
+                name,
+                url,
+              },
+            }))
+            .sort((a, b) => new Date(b.published) - new Date(a.published))
+            .slice(0, siteConfig.maxItemsPerFeed);
+        } catch (error) {
+          console.log(error);
+        }
       });
 
       const allArticles = await getFulfilledValues(allSiteFeeds);
@@ -106,6 +136,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("sites", async function (collectionApi) {
     const sites = collectionApi
       .getFilteredByTag("site")
+      .filter((item) => !item.data.disabled)
       .slice()
       .sort((a, b) => a.data.name.localeCompare(b.data.name));
 
@@ -139,27 +170,6 @@ module.exports = function (eleventyConfig) {
       orientation: "any",
     },
   });
-
-  if (siteConfig.enablePWA) {
-    eleventyConfig.addPlugin(pluginPWA, {
-      cacheId: "multiplicity",
-      runtimeCaching: [
-        {
-          urlPattern: /\/$/,
-          handler: "NetworkFirst",
-        },
-        {
-          urlPattern: /\.html$/,
-          handler: "NetworkFirst",
-        },
-        {
-          urlPattern:
-            /^.*\.(jpg|png|mp4|gif|webp|ico|svg|woff2|woff|eot|ttf|otf|ttc|json)$/,
-          handler: "StaleWhileRevalidate",
-        },
-      ],
-    });
-  }
 
   eleventyConfig.addPlugin(pluginRss);
 
