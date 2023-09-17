@@ -19,9 +19,9 @@
 
   <p>
     {% if item.htmlDescription %}
-      {{ item.htmlDescription }}
+      {{ item.htmlDescription | safe }}
     {% elif item.description %}
-      {{ item.description }}
+      {{ item.description | safe }}
     {% endif %}
   </p>
 </article>
