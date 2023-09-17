@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="{{ '/css/style.css' | addHash }}">
 <script src="{{ '/js/scripts.js' | addHash }}"></script>
 <meta name="generator" content="{{ siteConfig.generator.name }} v{{ siteConfig.generator.version }}">
+{%- if canonical -%}
+<link rel="canonical" href="{{ canonical | alwaysProductionUrl }}" />
+{%- endif -%}
 {% favicons 'assets/favicon.svg', appleIconBgColor='#000' %}
 <script>
 if ('serviceWorker' in navigator) {

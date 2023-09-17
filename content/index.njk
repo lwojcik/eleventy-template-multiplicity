@@ -6,6 +6,7 @@ pagination:
   size: 10
   alias: items
 permalink: "{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1 }}{% endif %}/"
+canonical: /
 ---
 
 {%- set totalPages = pagination.pages|length -%}
