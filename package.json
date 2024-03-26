@@ -14,26 +14,27 @@
     "clean": "rimraf _site",
     "predev": "npm run clean",
     "dev": "ELEVENTY_ENV=development npm-run-all build:sass --parallel watch:*",
-    "debug": "DEBUG=Eleventy* npm run dev"
+    "debug": "DEBUG=Eleventy* npm run dev",
+    "start": "npm run dev"
   },
   "dependencies": {
     "@11ty/eleventy": "2.0.1",
-    "@11ty/eleventy-fetch": "^4.0.0",
+    "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
-    "@extractus/feed-extractor": "^7.0.5",
+    "@extractus/feed-extractor": "^7.0.9",
     "eleventy-plugin-gen-favicons": "^1.1.2",
-    "eleventy-plugin-pwa-v2": "^1.0.0",
+    "eleventy-plugin-pwa-v2": "^1.0.1",
     "html-minifier-terser": "^7.2.0",
     "image-type": "^5.2.0",
     "is-svg": "^5.0.0",
-    "luxon": "^3.3.0",
-    "minify-xml": "^4.0.0",
+    "luxon": "^3.4.4",
+    "minify-xml": "^4.4.1",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^5.0.1",
-    "sass": "^1.64.1",
-    "sharp": "^0.32.4",
+    "rimraf": "^5.0.5",
+    "sass": "^1.72.0",
+    "sharp": "^0.33.3",
     "slugify": "^1.6.6",
-    "string-strip-html": "^8.5.0",
-    "terser": "^5.19.2"
+    "string-strip-html": "^13.4.6",
+    "terser": "^5.29.2"
   }
 }
