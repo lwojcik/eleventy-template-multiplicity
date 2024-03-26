@@ -60,31 +60,6 @@ module.exports = function (eleventyConfig) {
             },
           });
 
-          const extractOptions = {
-            getExtraEntryFields: (item) => {
-              try {
-                if (item.content["#text"]?.length > 0) {
-                  const htmlDescription = stripAndTruncateHTML(
-                    item.content["#text"],
-                    siteConfig.maxPostLength
-                  );
-
-                  return {
-                    htmlDescription,
-                  };
-                } else {
-                  return {
-                    htmlDescription: "",
-                  };
-                }
-              } catch (error) {
-                return {
-                  htmlDescription: "",
-                };
-              }
-            },
-          };
-
           const parsedFeedData =
             feedType === "json" && typeof feedData === "string"
               ? JSON.parse(feedData)
@@ -102,7 +77,7 @@ module.exports = function (eleventyConfig) {
                     ),
                   })),
                 }
-              : extractor.extractFromXml(feedData, extractOptions);
+              : extractor.extractFromXml(feedData);
 
           return feedContent.entries
             .map((entry) => ({
