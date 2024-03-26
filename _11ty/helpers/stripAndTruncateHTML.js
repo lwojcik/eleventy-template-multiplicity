@@ -1,12 +1,8 @@
-const stringStripHtml = import("string-strip-html");
+const { stripHtml } = require("string-strip-html");
 
-module.exports = async (input, maxLength) => {
-  const { stripHtml } = await stringStripHtml;
-
+module.exports = (input, maxLength) => {
   const COLON = '...'
-
   const strippedString = stripHtml(input).result;
-
   const lastSpaceIndex = strippedString.lastIndexOf(" ", maxLength);
 
   if (strippedString.length <= maxLength) {
