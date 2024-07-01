@@ -4,9 +4,13 @@
 
 Alongside the template code, it also contains a GitHub action required to keep the site up to date.
 
-[View demo](https://eleventy-m10y.lkmt.us/)
+**[View demo](https://eleventy-m10y.lkmt.us/)**
 
-Want to see in in action? Check out [Blogworm.eu](https://blogworm.eu/).
+Want to see a real life example? Check out **[Blogworm.eu](https://blogworm.eu/)**.
+
+_(Do you run your own public instance and want to get it listed here? [Submit a GitHub issue!](https://github.com/lwojcik/eleventy-template-multiplicity/issues/new))_
+
+**Project development is primarily done on [GitHub](https://github.com/lwojcik/eleventy-template-multiplicity).** Mirrors of the main branch are also available on [Codeberg](https://codeberg.org/lukem/eleventy-template-multiplicity) and [Gitlab](https://gitlab.com/lukaszwojcik/eleventy-template-multiplicity).
 
 ## Instant deploy
 
@@ -51,9 +55,9 @@ Render:
 
 See [`phrases.js`](./content/_data/phrases.js) for the list of translatable static phrases.
 
-## Note for Netlify users
+## Note on persisting feed cache
 
-The aggregator uses [eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/) plugin for fetching and caching network requests. If you use Netlify, you can limit number of network requests with Netlify cache mechanism - [see Eleventy docs on how to enable it](https://www.11ty.dev/docs/plugins/fetch/#running-this-on-your-build-server).
+The aggregator uses [eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/) plugin for fetching and caching network requests. If you use a hosting provider that supports persisting cache (e.g. Netlify or Vercel), you can limit number of network requests by making your `.cache` folder persistent between builds. See [Eleventy docs on how to set it up](https://www.11ty.dev/docs/deployment/#persisting-cache).
 
 ## Contributions
 
@@ -63,3 +67,13 @@ Contributions of the following kind are welcome:
 - feature suggestions / improvements of existing features
 
 Before contributing be sure to read [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## Sponsors
+
+Huge thanks to generous sponsors of this project!
+
+- [Adam DJ Brett](https://github.com/adamdjbrett)
+
+## Licence
+
+No license. [Public domain, no strings attached.](https://raw.githubusercontent.com/lwojcik/eleventy-template-multiplicity/main/LICENSE). Yes, I'm being serious.
