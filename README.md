@@ -10,7 +10,7 @@ Want to see a real life example? Check out **[Blogworm.eu](https://blogworm.eu/)
 
 _(Do you run your own public instance and want to get it listed here? [Submit a GitHub issue!](https://github.com/lwojcik/eleventy-template-multiplicity/issues/new))_
 
-**Project development is primarily done on [GitHub](https://github.com/lwojcik/eleventy-template-multiplicity).** Mirrors of the main branch are also available on [Codeberg](https://codeberg.org/lukem/eleventy-template-multiplicity) and [Gitlab](https://gitlab.com/lukaszwojcik/eleventy-template-multiplicity).
+**Project development is primarily done on [GitHub](https://github.com/lwojcik/eleventy-template-multiplicity).** Mirrors of the main branch are also available on [Codeberg](https://codeberg.org/lukem/eleventy-template-multiplicity) and [GitLab](https://gitlab.com/lukaszwojcik/eleventy-template-multiplicity).
 
 ## Instant deploy
 
@@ -76,4 +76,4 @@ Huge thanks to generous sponsors of this project!
 
 ## Licence
 
-No license. [Public domain, no strings attached.](https://raw.githubusercontent.com/lwojcik/eleventy-template-multiplicity/main/LICENSE). Yes, I'm being serious.
+No license. [Public domain, no strings attached.](https://raw.githubusercontent.com/lwojcik/eleventy-template-multiplicity/main/LICENSE) Yes, I'm being serious.
