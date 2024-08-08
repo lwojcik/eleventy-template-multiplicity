@@ -37,97 +37,99 @@ module.exports = function (eleventyConfig) {
 
   // --- Collections
 
-  eleventyConfig.addCollection("articles", async function (collectionApi) {
-    try {
-      const extractor = await feedExtractor;
-      const blogs = collectionApi
-        .getFilteredByTag("site")
-        .filter((item) => !item.data.disabled);
+  // TODO: Move to global data
 
-      const allSiteFeeds = blogs.map(async (blog) => {
-        try {
-          const { data } = blog;
-          const { name, url, avatar, feed, feedType } = data;
+  // eleventyConfig.addCollection("articles", async function (collectionApi) {
+  //   try {
+  //     const extractor = await feedExtractor;
+  //     const blogs = collectionApi
+  //       .getFilteredByTag("site")
+  //       .filter((item) => !item.data.disabled);
 
-          const feedData = await EleventyFetch(feed, {
-            duration: siteConfig.localCacheDuration,
-            type: feedType === "json" ? "json" : "text",
-            verbose: process.env.ELEVENTY_ENV === "development",
-            fetchOptions: {
-              headers: {
-                "user-agent": siteConfig.userAgent,
-              },
-            },
-          });
+  //     const allSiteFeeds = blogs.map(async (blog) => {
+  //       try {
+  //         const { data } = blog;
+  //         const { name, url, avatar, feed, feedType } = data;
 
-          const parsedFeedData =
-            feedType === "json" && typeof feedData === "string"
-              ? JSON.parse(feedData)
-              : feedData;
+  //         const feedData = await EleventyFetch(feed, {
+  //           duration: siteConfig.localCacheDuration,
+  //           type: feedType === "json" ? "json" : "text",
+  //           verbose: process.env.ELEVENTY_ENV === "development",
+  //           fetchOptions: {
+  //             headers: {
+  //               "user-agent": siteConfig.userAgent,
+  //             },
+  //           },
+  //         });
 
-          const feedContent =
-            feedType === "json"
-              ? {
-                  entries: parsedFeedData.items.map((item) => ({
-                    ...item,
-                    published: item.date_published,
-                    description: stripAndTruncateHTML(
-                      item.content_html,
-                      siteConfig.maxPostLength
-                    ),
-                  })),
-                }
-              : extractor.extractFromXml(feedData);
+  //         const parsedFeedData =
+  //           feedType === "json" && typeof feedData === "string"
+  //             ? JSON.parse(feedData)
+  //             : feedData;
 
-          return feedContent.entries
-            .map((entry) => ({
-              ...entry,
-              avatar,
-              author: {
-                name,
-                url,
-              },
-            }))
-            .sort((a, b) => new Date(b.published) - new Date(a.published))
-            .slice(0, siteConfig.maxItemsPerFeed);
-        } catch (error) {
-          console.log(error);
-        }
-      });
+  //         const feedContent =
+  //           feedType === "json"
+  //             ? {
+  //                 entries: parsedFeedData.items.map((item) => ({
+  //                   ...item,
+  //                   published: item.date_published,
+  //                   description: stripAndTruncateHTML(
+  //                     item.content_html,
+  //                     siteConfig.maxPostLength
+  //                   ),
+  //                 })),
+  //               }
+  //             : extractor.extractFromXml(feedData);
 
-      const allArticles = await getFulfilledValues(allSiteFeeds);
+  //         return feedContent.entries
+  //           .map((entry) => ({
+  //             ...entry,
+  //             avatar,
+  //             author: {
+  //               name,
+  //               url,
+  //             },
+  //           }))
+  //           .sort((a, b) => new Date(b.published) - new Date(a.published))
+  //           .slice(0, siteConfig.maxItemsPerFeed);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     });
 
-      const sortedItems = allArticles
-        .flat()
-        .sort((a, b) => new Date(b.published) - new Date(a.published));
+  //     const allArticles = await getFulfilledValues(allSiteFeeds);
 
-      return sortedItems;
-    } catch (error) {
-      console.log(error);
-      throw new Error(error);
-    }
-  });
+  //     const sortedItems = allArticles
+  //       .flat()
+  //       .sort((a, b) => new Date(b.published) - new Date(a.published));
 
-  eleventyConfig.addCollection("sites", async function (collectionApi) {
-    const sites = collectionApi
-      .getFilteredByTag("site")
-      .filter((item) => !item.data.disabled)
-      .slice()
-      .sort((a, b) => a.data.name.localeCompare(b.data.name));
+  //     return sortedItems;
+  //   } catch (error) {
+  //     console.log(error);
+  //     throw new Error(error);
+  //   }
+  // });
 
-    const sitesWithCachedAvatars = await Promise.all(
-      sites.map(async (site) => {
-        const cachedAvatar = await cacheAvatar({
-          url: site.data.avatar,
-          name: site.data.name,
-        });
-        site.data.avatar = cachedAvatar;
-        return site;
-      })
-    );
+  // eleventyConfig.addCollection("sites", async function (collectionApi) {
+  //   const sites = collectionApi
+  //     .getFilteredByTag("site")
+  //     .filter((item) => !item.data.disabled)
+  //     .slice()
+  //     .sort((a, b) => a.data.name.localeCompare(b.data.name));
 
-    return sitesWithCachedAvatars;
-  });
+  //   const sitesWithCachedAvatars = await Promise.all(
+  //     sites.map(async (site) => {
+  //       const cachedAvatar = await cacheAvatar({
+  //         url: site.data.avatar,
+  //         name: site.data.name,
+  //       });
+  //       site.data.avatar = cachedAvatar;
+  //       return site;
+  //     })
+  //   );
+
+  //   return sitesWithCachedAvatars;
+  // });
 
   // --- Plugins
 
