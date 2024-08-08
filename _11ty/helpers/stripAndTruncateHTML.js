@@ -1,9 +1,8 @@
-const stringStripHtml = import("string-strip-html");
+const { stripHtml } = import("string-strip-html");
 
 const ELLIPSIS = '…';
 
 module.exports = async (input, maxLength) => {
-  const stripHtml = await stringStripHtml;
   const strippedString = stripHtml(input).result;
   const lastSpaceIndex = strippedString.lastIndexOf(" ", maxLength);
 

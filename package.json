@@ -33,7 +33,7 @@
     "sass": "^1.77.8",
     "sharp": "^0.33.4",
     "slugify": "^1.6.6",
-    "string-strip-html": "13.4.8",
+    "string-strip-html": "8.5.0",
     "terser": "^5.31.5"
   }
 }
