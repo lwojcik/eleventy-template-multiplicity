@@ -4,6 +4,8 @@ const siteMetadata = require("./siteMetadata");
 const logger = require("../../_11ty/helpers/logger");
 const { ELEVENTY_FETCH_OPTIONS } = require("../../_11ty/constants");
 const getFulfilledValues = require("../../_11ty/helpers/getFulfilledValues");
+const siteConfig = require("./siteConfig");
+const truncateString = require("../../_11ty/helpers/truncateString");
 
 module.exports = async () => {
   const xmlFeedSites = siteMetadata().filter((site) => site.feedType === "xml");
@@ -14,14 +16,15 @@ module.exports = async () => {
       const feedData = await EleventyFetch(site.feed, ELEVENTY_FETCH_OPTIONS);
       const { entries } = extractor.extractFromXml(feedData);
 
-      const articles = entries.map(
-        ({ title, link, published, description }) => ({
+      const articles = entries
+        .map(({ title, link, published, description }) => ({
           title,
           link,
           published,
-          description,
-        })
-      );
+          description: truncateString(description),
+        }))
+        .sort((a, b) => new Date(b.published) - new Date(a.published))
+        .slice(0, siteConfig.maxItemsPerFeed);
 
       return {
         ...site,
@@ -37,6 +40,5 @@ module.exports = async () => {
   });
 
   const xmlFeedContents = await getFulfilledValues(feedContents);
-
   return xmlFeedContents;
 };

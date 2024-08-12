@@ -32,19 +32,21 @@ module.exports = () => {
     .readdirSync(SITES_PATH)
     .filter((file) => file.endsWith(".md"));
 
-  return files.map((file) => {
-    const filePath = path.join(SITES_PATH, file);
-    const fileContents = fs.readFileSync(filePath, "utf-8");
-    const { data } = matter(fileContents);
+  return files
+    .map((file) => {
+      const filePath = path.join(SITES_PATH, file);
+      const fileContents = fs.readFileSync(filePath, "utf-8");
+      const { data } = matter(fileContents);
 
-    const siteMetadata = {
-      file,
-      ...data,
-      feedType: parseFeedType(data.feedType, file),
-    };
+      const siteMetadata = {
+        file,
+        ...data,
+        feedType: parseFeedType(data.feedType, file),
+      };
 
-    validateSiteData(siteMetadata);
+      validateSiteData(siteMetadata);
 
-    return siteMetadata;
-  });
+      return siteMetadata;
+    })
+    .filter((item) => !item.disable);
 };

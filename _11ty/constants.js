@@ -12,6 +12,7 @@ module.exports = {
     "feed",
     "feedType",
     "hideFromSiteList",
+    "disable",
   ],
   WARNING_PREFIX: "warning",
   ERROR_PREFIX: "ERROR",
