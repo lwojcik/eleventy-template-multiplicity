@@ -4,6 +4,6 @@ eleventyExcludeFromCollections: true
 permalink: index2.html
 ---
 
-{% for item in collections.sites %}
-  {{ item.data.feed }}
+{% for item in sites %}
+  {{ item.name }}
 {% endfor %}
