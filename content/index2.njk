@@ -3,7 +3,9 @@ layout: base
 eleventyExcludeFromCollections: true
 permalink: index2.html
 ---
-
-{% for item in sites %}
+{# 
+{% for item in xmlFeedContents %}
   {{ item.name }}
-{% endfor %}
+{% endfor %} #}
+
+{{ xmlFeedContents }}

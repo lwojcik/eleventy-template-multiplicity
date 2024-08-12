@@ -5,18 +5,22 @@ const validateSiteData = require("../../_11ty/helpers/validateSiteData");
 const {
   DEFAULT_FEED_TYPE,
   ALLOWED_FEED_TYPES,
-  SITES_DIR,
+  SITES_DIRECTORY,
 } = require("../../_11ty/constants");
-const logger = require("../../_11ty/helpers/logger/logger");
+const logger = require("../../_11ty/helpers/logger");
 
-const SITES_PATH = path.join(__dirname, "..", SITES_DIR);
+const SITES_PATH = path.join(__dirname, "..", SITES_DIRECTORY);
 
 const parseFeedType = (feedType, file) => {
   if (feedType && !ALLOWED_FEED_TYPES.includes(feedType)) {
     logger.warn(
-      `[${file}] "${feedType}" is not a known feedType - using ${DEFAULT_FEED_TYPE} instead...`
+      `[${file}] Unknown feedType: "${feedType}" - using ${DEFAULT_FEED_TYPE} instead`
     );
 
+    return DEFAULT_FEED_TYPE;
+  }
+
+  if (!feedType) {
     return DEFAULT_FEED_TYPE;
   }
 

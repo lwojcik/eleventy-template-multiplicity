@@ -1,30 +1,28 @@
-// const log = (message) => {
-//   console.log(`${LOG_PREFIX} [error] ${message}`);
-// };
-
 const detectExtraProperties = require("./detectExtraProperties");
-const logger = require("./logger/logger");
+const logger = require("./logger");
 
 module.exports = (site) => {
-  if (!site.name) {
-    logger.warn(`[${site.file}] 'name' attribute is missing or empty`);
+  const { file, name, url, avatar, feed } = site;
+
+  if (!name) {
+    logger.warn(`[${file}] Property missing or empty: 'name'`);
   }
 
-  if (!site.url) {
-    logger.warn(`[${site.file}] 'url' attribute is missing or empty`);
+  if (!url) {
+    logger.warn(`[${file}] Property missing or empty: 'url'`);
   }
 
-  if (!site.avatar) {
-    logger.warn(`[${site.file}] 'avatar' attribute is missing or empty`);
+  if (!avatar) {
+    logger.warn(`[${file}] Property missing or empty: 'avatar'`);
   }
 
-  if (!site.feed) {
+  if (!feed) {
     logger.error(
-      `[${site.file}] 'feed' attribute is missing or empty - this site will not be processed!`
+      `[${file}] Property 'feed' is missing or empty - this site will not be processed!`
     );
   }
 
-  // checking for extraneous object properties (e.g. typos)
+  // checking for extraneous object properties in case of typos
 
   const extraProperties = detectExtraProperties(site);
 
