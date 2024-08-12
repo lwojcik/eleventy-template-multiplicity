@@ -13,15 +13,19 @@ module.exports = async () => {
 
   const feedContents = await xmlFeedSites.map(async (site) => {
     try {
-      const feedData = await EleventyFetch(site.feed, ELEVENTY_FETCH_OPTIONS);
+      const feedData = await EleventyFetch(site.feed, {
+        ...ELEVENTY_FETCH_OPTIONS,
+        type: "text",
+      });
+
       const { entries } = extractor.extractFromXml(feedData);
 
       const articles = entries
         .map(({ title, link, published, description }) => ({
           title,
           link,
-          published,
-          description: truncateString(description),
+          published: published || new Date().toISOString(),
+          description: truncateString(description, siteConfig.maxPostLength),
         }))
         .sort((a, b) => new Date(b.published) - new Date(a.published))
         .slice(0, siteConfig.maxItemsPerFeed);

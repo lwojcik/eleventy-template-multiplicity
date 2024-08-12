@@ -19,7 +19,6 @@ module.exports = {
   INFO_PREFIX: "info",
   ELEVENTY_FETCH_OPTIONS: {
     duration: siteConfig.localCacheDuration,
-    type: "text",
     verbose: process.env.ELEVENTY_ENV === "development",
     directory: siteConfig.cacheDirectory,
     dryRun: siteConfig.cacheDryRun,
