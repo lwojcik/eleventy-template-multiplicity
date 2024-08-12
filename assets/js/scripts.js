@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const themeKey = "theme";
 const darkSetting = "dark";
 const lightSetting = "light";
@@ -84,7 +86,7 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("menu").querySelectorAll(".custom-can-transform"),
       function (el) {
         el.classList.toggle("pure-menu-horizontal");
-      },
+      }
     );
   }
 

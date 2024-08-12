@@ -1,15 +1,10 @@
-const EleventyFetch = require("@11ty/eleventy-fetch");
-const feedExtractor = import("@extractus/feed-extractor");
 const faviconsPlugin = require("eleventy-plugin-gen-favicons");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
-const cacheAvatar = require("./_11ty/helpers/cacheAvatar");
 const addHash = require("./_11ty/helpers/addHash");
-const getFulfilledValues = require("./_11ty/helpers/getFulfilledValues");
 const readableDate = require("./_11ty/helpers/readableDate");
 const minifyHTML = require("./_11ty/helpers/minifyHTML");
 const siteConfig = require("./content/_data/siteConfig");
 const minifyXML = require("./_11ty/helpers/minifyXML");
-const stripAndTruncateHTML = require("./_11ty/helpers/stripAndTruncateHTML");
 
 module.exports = function (eleventyConfig) {
   // --- Copy assets
@@ -32,7 +27,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("readableDate", readableDate);
   eleventyConfig.addFilter(
     "alwaysProductionUrl",
-    (path) => new URL(path, siteConfig.url),
+    (path) => new URL(path, siteConfig.url)
   );
 
   // --- Collections

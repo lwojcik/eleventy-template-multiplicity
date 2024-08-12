@@ -11,6 +11,10 @@
     "watch:eleventy": "npx eleventy --serve --quiet",
     "watch:sass": "sass --no-source-map --watch ./styles:_site/css --style compressed",
     "build:sass": "sass --no-source-map styles:_site/css --style compressed",
+    "lint": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "format": "npx prettier .",
+    "format:fix": "npx prettier . --write",
     "clean": "rimraf _site",
     "predev": "npm run clean",
     "dev": "ELEVENTY_ENV=development npm-run-all build:sass --parallel watch:*",
@@ -33,6 +37,9 @@
     "terser": "^5.31.5"
   },
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1"
   }
