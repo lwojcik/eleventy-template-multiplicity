@@ -1,32 +1,32 @@
 {% if totalPages > 1 %}
-  <nav class="pagination">
-    <ul>
-      <li class="links previous">
-        {% if previousHref %}
-          <a href="{{ previousHref }}">
-            <span class="arrow">&larr; </span>{{ phrases.newerArticles }}
-          </a>
-        {% else %}
-          <span class="inactive-link">
-            <span class="arrow">&larr;</span>{{ phrases.newerArticles }}
-          </span>
-        {% endif %}
-      </li>
-      {% if currentPage %}
-      <li class="current">
-        {{ phrases.page }} {{ currentPage }} {{ phrases.of }} {{ totalPages }}</span>
-      </li>
-      {% endif %}
-      <li class="links next">
+<nav class="pagination">
+  <ul>
+    <li class="links previous">
+    {% if previousHref %}
+      <a href="{{ previousHref }}">
+        <span class="arrow">&larr; </span>{{ phrases.newerArticles }}
+      </a>
+    {% else %}
+      <span class="inactive-link">
+        <span class="arrow">&larr;</span>{{ phrases.newerArticles }}
+      </span>
+    {% endif %}
+    </li>
+    {% if currentPage %}
+    <li class="current">
+      {{ phrases.page }} {{ currentPage }} {{ phrases.of }} {{ totalPages }}</span>
+    </li>
+    {% endif %}
+    <li class="links next">
       {% if nextHref %}
-        <a href="{{ nextHref }}">
-          {{ phrases.olderArticles }} <span class="arrow">&rarr;</span>
-        </a>
-      {% else %}
-        <span class="inactive-link">
-          {{ phrases.olderArticles }} <span class="arrow">&rarr;</span>
-        </span>
-      {% endif %}
+      <a href="{{ nextHref }}">
+        {{ phrases.olderArticles }} <span class="arrow">&rarr;</span>
+      </a>
+    {% else %}
+      <span class="inactive-link">
+        {{ phrases.olderArticles }} <span class="arrow">&rarr;</span>
+      </span>
+    {% endif %}
     </li>
   </ul>
 </nav>
