@@ -32,7 +32,17 @@ module.exports = function (eleventyConfig) {
 
   // --- Collections
 
-  // TODO: Move to global data
+  // eleventyConfig.addCollection("sites", (collectionApi) =>
+  //   collectionApi.getFilteredByTag("site")
+  // );
+
+  // eleventyConfig.addCollection("feeds", (collectionApi) => {
+  //   const sites = collectionApi.getFilteredByTag("site");
+
+  //   console.log(sites[0].data);
+
+  //   return sites;
+  // });
 
   // eleventyConfig.addCollection("articles", async function (collectionApi) {
   //   try {

@@ -2,7 +2,6 @@ const siteConfig = require("../content/_data/siteConfig");
 const EleventyFetch = require("@11ty/eleventy-fetch");
 
 const { localCacheDuration: LOCAL_CACHE_DURATION } = siteConfig;
-
 const AVAILABLE_DATA_TYPES = ["json", "text", "buffer"];
 
 const fetchFromApi = async ({
@@ -11,7 +10,7 @@ const fetchFromApi = async ({
   duration = LOCAL_CACHE_DURATION,
 }) => {
   if (!url) {
-    throw new Error("Fetching error: no URL to fetch provided");
+    throw new Error("Fetch error: no URL to fetch from provided");
   }
 
   if (!AVAILABLE_DATA_TYPES.includes(type)) {
