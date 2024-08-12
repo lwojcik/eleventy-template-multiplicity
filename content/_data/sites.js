@@ -1,0 +1,46 @@
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
+const validateSiteData = require("../../_11ty/helpers/validateSiteData");
+const {
+  DEFAULT_FEED_TYPE,
+  ALLOWED_FEED_TYPES,
+  SITES_DIR,
+} = require("../../_11ty/constants");
+const logger = require("../../_11ty/helpers/logger/logger");
+
+const SITES_PATH = path.join(__dirname, "..", SITES_DIR);
+
+const parseFeedType = (feedType, file) => {
+  if (feedType && !ALLOWED_FEED_TYPES.includes(feedType)) {
+    logger.warn(
+      `[${file}] "${feedType}" is not a known feedType - using ${DEFAULT_FEED_TYPE} instead...`
+    );
+
+    return DEFAULT_FEED_TYPE;
+  }
+
+  return feedType;
+};
+
+module.exports = () => {
+  const files = fs
+    .readdirSync(SITES_PATH)
+    .filter((file) => file.endsWith(".md"));
+
+  return files.map((file) => {
+    const filePath = path.join(SITES_PATH, file);
+    const fileContents = fs.readFileSync(filePath, "utf-8");
+    const { data } = matter(fileContents);
+
+    const siteMetadata = {
+      file,
+      ...data,
+      feedType: parseFeedType(data.feedType, file),
+    };
+
+    validateSiteData(siteMetadata);
+
+    return siteMetadata;
+  });
+};
