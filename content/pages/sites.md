@@ -6,6 +6,6 @@ permalink: /sites/
 canonical: /sites/
 ---
 
-This is a list of RSS feeds added to the aggregator. Modify it by adding / editing files in `content/sites` directory.
+This is a list of sites aggregated on this Multiplicity instance. Modify it by adding / editing Markdown files in `content/sites` directory.
 
-{% include "partials/bloglist.njk" %}
+{% include "partials/sitelist.njk" %}

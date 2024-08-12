@@ -1,15 +1,15 @@
 const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
-const validateSiteData = require("../../_11ty/helpers/validateSiteData");
+const validateSiteData = require("../helpers/validateSiteData");
 const {
   DEFAULT_FEED_TYPE,
   ALLOWED_FEED_TYPES,
   SITES_DIRECTORY,
-} = require("../../_11ty/constants");
-const logger = require("../../_11ty/helpers/logger");
+} = require("../constants");
+const logger = require("../helpers/logger");
 
-const SITES_PATH = path.join(__dirname, "..", SITES_DIRECTORY);
+const SITES_PATH = path.join(__dirname, "..", "..", SITES_DIRECTORY);
 
 const parseFeedType = (feedType, file) => {
   if (feedType && !ALLOWED_FEED_TYPES.includes(feedType)) {

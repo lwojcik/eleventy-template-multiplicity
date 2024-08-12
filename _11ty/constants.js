@@ -1,9 +1,10 @@
+const path = require("path");
 const siteConfig = require("../content/_data/siteConfig");
 
 module.exports = {
   DEFAULT_FEED_TYPE: "xml",
   ALLOWED_FEED_TYPES: ["xml", "json"],
-  SITES_DIRECTORY: "sites",
+  SITES_DIRECTORY: path.join("content", "sites"),
   ALLOWED_SITE_PROPERTIES: [
     "file",
     "name",
