@@ -32,7 +32,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("readableDate", readableDate);
   eleventyConfig.addFilter(
     "alwaysProductionUrl",
-    (path) => new URL(path, siteConfig.url)
+    (path) => new URL(path, siteConfig.url),
   );
 
   // --- Collections

@@ -84,7 +84,7 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("menu").querySelectorAll(".custom-can-transform"),
       function (el) {
         el.classList.toggle("pure-menu-horizontal");
-      }
+      },
     );
   }
 

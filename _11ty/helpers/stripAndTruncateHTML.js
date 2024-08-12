@@ -1,6 +1,6 @@
 const { stripHtml } = import("string-strip-html");
 
-const ELLIPSIS = '…';
+const ELLIPSIS = "…";
 
 module.exports = async (input, maxLength) => {
   const strippedString = stripHtml(input).result;

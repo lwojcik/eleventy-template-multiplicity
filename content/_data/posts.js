@@ -1,1 +1,0 @@
-// fetch formatted posts from all feeds
