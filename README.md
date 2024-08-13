@@ -24,15 +24,6 @@ Render:
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/lwojcik/eleventy-template-multiplicity)
 
-## Features
-
-- light / dark mode switcher + honoring color scheme preference
-- pagination
-- translation ready (separate file with static phrases)
-- automatic favicon generation
-- support for RSS and JSON feeds
-- custom avatar alongside each feed item
-
 ## Setup and personalization
 
 1. Fork the repository.

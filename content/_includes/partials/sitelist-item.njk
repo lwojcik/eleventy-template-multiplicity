@@ -8,9 +8,9 @@
   </h2>
   <div class="rss">
     {% if site.feedType == 'json' %}
-      {% include "svg/json.svg" %} <a href="{{ site.feed }}">JSON Feed</a>
+      {% include "svg/json.svg" %} <a href="{{ site.feed }}">{{ phrases.jsonFeed }}</a>
     {% else %}
-      {% include "svg/rss.svg" %} <a href="{{ site.feed }}">RSS Feed</a>
+      {% include "svg/rss.svg" %} <a href="{{ site.feed }}">{{ phrases.rssFeed }}</a>
     {% endif %}
   </div>
 </li>
