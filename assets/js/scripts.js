@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 const themeKey = "theme";
 const darkSetting = "dark";
 const lightSetting = "light";
