@@ -28,7 +28,7 @@ module.exports = (site) => {
 
   if (extraProperties) {
     extraProperties.forEach((extraProperty) => {
-      logger.warn(`[${site.file}] Unknown property: "${extraProperty}"`);
+      logger.warn(`[${file}] Unknown property: "${extraProperty}"`);
     });
   }
 };
