@@ -20,7 +20,7 @@ module.exports = async () => {
 
       const articles = feedData.items
         .map((item) => ({
-          title: item.title,
+          title: item.title || siteConfig.defaultArticleTitle,
           link: item.url,
           published: item.date_published || new Date().toISOString(),
           description: stripAndTruncateHTML(
@@ -31,6 +31,8 @@ module.exports = async () => {
         .filter((item) => item)
         .sort((a, b) => new Date(b.published) - new Date(a.published))
         .slice(0, siteConfig.maxItemsPerFeed);
+
+      // TODO: Validate article items
 
       return {
         ...site,

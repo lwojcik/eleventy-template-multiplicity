@@ -9,7 +9,7 @@ const stripAndTruncateHTML = require("../helpers/stripAndTruncateHTML");
 
 module.exports = async () => {
   const xmlFeedSites = siteMetadata().filter((site) => site.feedType === "xml");
-  const extractor = await feedExtractor;
+  const { extractFromXml } = await feedExtractor;
 
   const feedContents = await xmlFeedSites.map(async (site) => {
     try {
@@ -18,11 +18,13 @@ module.exports = async () => {
         type: "text",
       });
 
-      const { entries } = extractor.extractFromXml(feedData);
+      const { entries } = extractFromXml(feedData);
+
+      // TODO: Validate article items
 
       const articles = entries
         .map((item) => ({
-          title: item.title,
+          title: item.title || siteConfig.defaultArticleTitle,
           link: item.link,
           published: item.published || new Date().toISOString(),
           description: stripAndTruncateHTML(
