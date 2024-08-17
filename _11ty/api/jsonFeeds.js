@@ -32,8 +32,6 @@ module.exports = async () => {
         .sort((a, b) => new Date(b.published) - new Date(a.published))
         .slice(0, siteConfig.maxItemsPerFeed);
 
-      // TODO: Validate article items
-
       return {
         ...site,
         articles,

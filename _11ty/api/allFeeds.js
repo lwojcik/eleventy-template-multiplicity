@@ -1,11 +1,11 @@
 const fetchJsonFeeds = require("./jsonFeeds");
-const fetchXmlFeeds = require("./xmlFeeds");
+const fetchRssFeeds = require("./rssFeeds");
 
 module.exports = async () => {
-  const xmlFeeds = await fetchXmlFeeds();
+  const rssFeeds = await fetchRssFeeds();
   const jsonFeeds = await fetchJsonFeeds();
 
-  const allFeeds = [...xmlFeeds, ...jsonFeeds]
+  const allFeeds = [...rssFeeds, ...jsonFeeds]
     .sort((a, b) => a.name.localeCompare(b.name))
     .filter((item) => item);
 
