@@ -1,6 +1,7 @@
 const clc = require("cli-color");
 const { logPrefix: LOG_PREFIX } = require("../../content/_data/siteConfig");
-const { WARNING_PREFIX, ERROR_PREFIX, INFO_PREFIX } = require("../constants");
+const { WARNING_PREFIX, ERROR_PREFIX, INFO_PREFIX, VERBOSE_PREFIX } = require("../constants");
+const siteConfig = require("../../content/_data/siteConfig");
 
 module.exports = {
   warn: (message) => {
@@ -23,5 +24,15 @@ module.exports = {
     );
 
     console.error(formattedMessage);
+  },
+
+  verbose: (message) => {
+    const formattedMessage = clc.magenta(
+      `[${LOG_PREFIX}] [${VERBOSE_PREFIX}] ${message}`
+    );
+
+    if (siteConfig.verbose) {
+      console.log(formattedMessage);
+    }
   },
 };

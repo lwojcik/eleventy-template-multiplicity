@@ -18,6 +18,7 @@ module.exports = {
   WARNING_PREFIX: "warning",
   ERROR_PREFIX: "ERROR",
   INFO_PREFIX: "info",
+  VERBOSE_PREFIX: 'verbose',
   ELEVENTY_FETCH_OPTIONS: {
     duration: siteConfig.localCacheDuration,
     verbose: process.env.ELEVENTY_ENV === "development",

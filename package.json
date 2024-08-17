@@ -31,6 +31,8 @@
     "gray-matter": "^4.0.3",
     "html-minifier-terser": "^7.2.0",
     "i": "^0.3.7",
+    "image-type": "^5.2.0",
+    "is-svg": "^5.1.0",
     "luxon": "^3.5.0",
     "minify-xml": "^4.5.2",
     "npm": "^10.8.2",

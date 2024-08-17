@@ -1,26 +1,42 @@
-<article class="article">
-  <a href="{{ authorUrl }}" class="author">
-    <img width="18" height="18" src="{{ avatar }}" alt="{{ authorName }}{{ phrases.sAvatar }}" />
-    <span>{{ authorName }}</span>
-  </a>
+  {% set url = item.url %}
+  {% set title = item.title|safe %}
+  {% set avatar = item.avatar %}
+  {% set siteUrl = item.siteUrl %}
+  {% set siteName = item.name %}
+  {% set published = item.published|readableDate %}
+  {% set description = item.description %}
+  
+  <article class="article">
+    {% if siteName %}
+    <a href="{{ siteUrl }}" class="author">
+    {% if avatar %}
+      <img width="18" height="18" src="{{ avatar }}" alt="{{ siteName }}{{ phrases.sAvatar }}" />
+    {% endif %}
+      <span>{{ siteName }}</span>
+    </a>
+    {% endif %}
 
   <h2 class="post-title">
-    <a href="{{ link }}">
+    {% if url %}
+    <a href="{{ url }}">
+    {% endif %}
       {{ title }}
+    {% if url %}
     </a>
+    {% endif %}
   </h2>
 
   <div class="post-meta">
+    {% if published %}
     <time>
       {% include "svg/calendar.svg" %}
       <span>{{ published }}</span>
     </time>
+    {% endif %}
   </div>
 
   <p>
-    {% if item.htmlDescription %}
-      {{ item.htmlDescription | safe }}
-    {% elif item.description %}
+    {% if item.description %}
       {{ item.description | safe }}
     {% endif %}
   </p>

@@ -1,7 +1,7 @@
 ---
 name: Łukasz Wójcik (JSON feed)
 url: https://blog.lukaszwojcik.net/
-avatar: https://blog.lukaszwojcik.net/favicon.svg
+avatar: https://blog.lukaszwojcik.net/fa22vicon.svg
 feed: https://blog.lukaszwojcik.net/excerpts.json
 # disable: true # skip processing this feed entirely
 feedType: json # specify this ONLY if you want to use a JSON feed - defaults to RSS / Atom
