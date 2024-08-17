@@ -16,13 +16,13 @@ eleventyExcludeFromCollections: true
 {%- for item in articles -%}
 <entry>
 <title>{{ item.title }}</title>
-<link href="{{ item.link }}" />
+<link href="{{ item.url }}" />
 <author>
-  <name>{{ item.author.name }}</name>
-  <uri>{{ item.author.url }}</uri>
+  <name>{{ item.name }}</name>
+  <uri>{{ item.siteUrl }}</uri>
 </author>
 <updated>{{ item.published }}</updated>
-<id>{{ item.link }}</id>
+<id>{{ item.url }}</id>
 <content type="html">{{ item.description }}</content>
 </entry>
 {%- endfor -%}
