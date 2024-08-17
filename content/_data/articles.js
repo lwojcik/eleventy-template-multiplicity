@@ -17,7 +17,9 @@ module.exports = async () => {
           description,
         };
 
-        validateFeedEntry(item);
+        const isArticleInvalid = validateFeedEntry(item);
+
+        if (isArticleInvalid) return {};
 
         return item;
       })

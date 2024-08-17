@@ -19,13 +19,6 @@ canonical: /
 </header>
 
 {% for item in items %}
-  {% set link = item.link %}
-  {% set title = item.title|safe %}
-  {% set avatar = item.avatar %}
-  {% set authorUrl = item.url %}
-  {% set authorName = item.name %}
-  {% set published = item.published|readableDate %}
-  {% set description = item.description %}
   {% include "partials/post.njk" %}
 {% endfor %}
 

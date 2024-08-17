@@ -23,5 +23,5 @@ module.exports = {
   cacheDirectory: ".cache", // location to store cached feed data. Change this to any other writable location if needed
   cacheDryRun: false, // change to true to disable caching entirely
   defaultArticleTitle: "Untitled", // placeholder for missing / non-existent article titles. Set to false to disable displaying titles entirely
-  verbose: false, // set to true to enable additional logging messages during the build process
+  verbose: true, // set to true to enable additional logging messages during the build process
 };
