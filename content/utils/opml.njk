@@ -1,0 +1,15 @@
+---
+permalink: /feeds.opml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+  <head>
+      <title>{{ phrases.opmlFileTitle }}</title>
+  </head>
+  <body>
+    {%- for site in sites %}
+    <outline text="{{ site.name }}" title="{{ site.name }}" type="{{ site.feedType }}" xmlUrl="{{ site.feed }}"/>
+    {%- endfor %}
+  </body>
+</opml>

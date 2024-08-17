@@ -8,10 +8,10 @@ const siteConfig = require("../../content/_data/siteConfig");
 const stripAndTruncateHTML = require("../helpers/stripAndTruncateHTML");
 
 module.exports = async () => {
-  const xmlFeedSites = siteMetadata().filter((site) => site.feedType === "xml");
+  const rssFeedSites = siteMetadata().filter((site) => site.feedType === "rss");
   const { extractFromXml } = await feedExtractor;
 
-  const feedContents = await xmlFeedSites.map(async (site) => {
+  const feedContents = await rssFeedSites.map(async (site) => {
     try {
       const feedData = await EleventyFetch(site.feed, {
         ...ELEVENTY_FETCH_OPTIONS,
@@ -19,8 +19,6 @@ module.exports = async () => {
       });
 
       const { entries } = extractFromXml(feedData);
-
-      // TODO: Validate article items
 
       const articles = entries
         .map((item) => ({

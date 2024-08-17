@@ -7,6 +7,7 @@ module.exports = {
   sAvatar: "'s avatar",
   newerArticles: "Newer",
   olderArticles: "Older",
+  opmlFileTitle: "All feeds",
   menu: {
     sites: "Sites",
     about: "About",
