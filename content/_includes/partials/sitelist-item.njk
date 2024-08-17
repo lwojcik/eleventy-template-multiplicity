@@ -1,0 +1,17 @@
+{% if site.hideFromSiteList != true %}
+<li>
+  <h2 class="site-name">
+    <img width="22" height="22" class="avatar" src="{{ site.avatar }}" alt="{{ site.name }}{{ phrases.sAvatar }}" />
+    <a href="{{ site.url }}">
+      {{ site.name }}
+    </a>
+  </h2>
+  <div class="rss">
+    {% if site.feedType == 'json' %}
+      {% include "svg/json.svg" %} <a href="{{ site.feed }}">{{ phrases.jsonFeed }}</a>
+    {% else %}
+      {% include "svg/rss.svg" %} <a href="{{ site.feed }}">{{ phrases.rssFeed }}</a>
+    {% endif %}
+  </div>
+</li>
+{% endif %}

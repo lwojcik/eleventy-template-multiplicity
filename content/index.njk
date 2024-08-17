@@ -2,7 +2,7 @@
 layout: base
 eleventyExcludeFromCollections: true
 pagination:
-  data: collections.articles
+  data: articles
   size: 10
   alias: items
 permalink: "{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber + 1 }}{% endif %}/"
@@ -19,13 +19,6 @@ canonical: /
 </header>
 
 {% for item in items %}
-  {% set link = item.link %}
-  {% set title = item.title %}
-  {% set avatar = item.avatar %}
-  {% set authorUrl = item.author.url %}
-  {% set authorName = item.author.name %}
-  {% set published = item.published|readableDate %}
-  {% set description = item.description | safe %}
   {% include "partials/post.njk" %}
 {% endfor %}
 
