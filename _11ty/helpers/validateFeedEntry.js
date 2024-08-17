@@ -16,5 +16,9 @@ module.exports = (item) => {
 
   const isItemIncomplete = !item.title && !item.description;
 
+  if (isItemIncomplete) {
+    logger.verbose(`[${item.name}] Skipping article without title and description`)
+  }
+
   return isItemIncomplete;
 };
