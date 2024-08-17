@@ -29,6 +29,19 @@ a {
 .article {
   padding: 2rem 0.5rem;
   border-bottom: 1px solid #bbb;
+
+  .clickable-item {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      .post-title {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .author {
