@@ -39,7 +39,7 @@ module.exports = () => {
       const { data } = matter(fileContents);
 
       const siteMetadata = {
-        file,
+        file: file.split('.')[0],
         ...data,
         feedType: parseFeedType(data.feedType, file),
       };

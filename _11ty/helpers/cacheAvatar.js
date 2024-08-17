@@ -3,9 +3,9 @@ const path = require("path");
 const EleventyFetch = require("@11ty/eleventy-fetch");
 const imageType = import("image-type");
 const isSvg = import("is-svg");
-const slugify = require("./slugify");
 const sharp = require("sharp");
 const siteConfig = require("../../content/_data/siteConfig");
+const logger = require("./logger");
 
 const DIST_PATH = "_site";
 const AVATAR_DIR = path.join("images", "avatars");
@@ -18,6 +18,7 @@ const FILE_EXTENSIONS = {
   "image/gif": "gif",
   "image/x-icon": "ico",
   "image/vnd.microsoft.icon": "ico",
+  "image/svg+xml": "svg",
 };
 
 const FILE_EXTENSIONS_NOT_TO_RESIZE = ["svg", "ico"];
@@ -28,7 +29,10 @@ module.exports = async ({ url, name }) => {
 
   try {
     if (url.startsWith("/")) {
-      return url;
+      return {
+        name,
+        url,
+      };
     }
 
     const imageBuffer = await EleventyFetch(url, {
@@ -48,8 +52,7 @@ module.exports = async ({ url, name }) => {
       : await detectImageType(imageBuffer);
 
     const extension = FILE_EXTENSIONS[contentType];
-
-    const fileName = `${slugify(name)}.${extension}`;
+    const fileName = `${name}.${extension}`;
 
     let resizedBuffer = imageBuffer;
 
@@ -63,12 +66,21 @@ module.exports = async ({ url, name }) => {
 
     const savePath = path.join(DIST_PATH, AVATAR_DIR, fileName);
     const dirPath = path.dirname(savePath);
+
     fs.mkdirSync(dirPath, { recursive: true });
     fs.writeFileSync(savePath, resizedBuffer);
 
-    return path.join("/", AVATAR_DIR, fileName);
+    return {
+      name,
+      url: path.join("/", AVATAR_DIR, fileName),
+    }
   } catch (error) {
+    logger.error(`[${name}] Error fetching avatar - default will be used`);
     console.log(error);
-    return DEFAULT_AVATAR_PATH;
+
+    return {
+      name,
+      url: DEFAULT_AVATAR_PATH,
+    }
   }
 };
