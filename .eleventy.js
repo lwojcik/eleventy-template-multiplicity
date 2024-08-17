@@ -30,27 +30,6 @@ module.exports = function (eleventyConfig) {
     (path) => new URL(path, siteConfig.url)
   );
 
-  // eleventyConfig.addCollection("sites", async function (collectionApi) {
-  //   const sites = collectionApi
-  //     .getFilteredByTag("site")
-  //     .filter((item) => !item.data.disabled)
-  //     .slice()
-  //     .sort((a, b) => a.data.name.localeCompare(b.data.name));
-
-  //   const sitesWithCachedAvatars = await Promise.all(
-  //     sites.map(async (site) => {
-  //       const cachedAvatar = await cacheAvatar({
-  //         url: site.data.avatar,
-  //         name: site.data.name,
-  //       });
-  //       site.data.avatar = cachedAvatar;
-  //       return site;
-  //     })
-  //   );
-
-  //   return sitesWithCachedAvatars;
-  // });
-
   // --- Plugins
 
   eleventyConfig.addPlugin(faviconsPlugin, {
