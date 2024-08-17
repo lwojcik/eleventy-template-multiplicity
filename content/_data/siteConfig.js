@@ -24,4 +24,5 @@ module.exports = {
   cacheDryRun: false, // change to true to disable caching entirely
   defaultArticleTitle: "Untitled", // placeholder for missing / non-existent article titles. Set to false to disable displaying titles entirely
   verbose: false, // set to true to enable additional logging messages during the build process
+  clickableDescriptions: false // set to true if you want whole articles to be clickable. With false, only article titles are clickable
 };

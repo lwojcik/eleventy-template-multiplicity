@@ -16,28 +16,58 @@
     </a>
     {% endif %}
 
-  <h2 class="post-title">
+  {% if siteConfig.clickableDescriptions %}
     {% if url %}
-    <a href="{{ url }}">
+      <a href="{{ url }}" class="clickable-item">
     {% endif %}
+
+    <h2 class="post-title">
       {{ title }}
-    {% if url %}
-    </a>
-    {% endif %}
-  </h2>
+    </h2>
 
-  <div class="post-meta">
-    {% if published %}
-    <time>
-      {% include "svg/calendar.svg" %}
-      <span>{{ published }}</span>
-    </time>
-    {% endif %}
-  </div>
+     <div class="post-meta">
+      {% if published %}
+      <time>
+        {% include "svg/calendar.svg" %}
+        <span>{{ published }}</span>
+      </time>
+      {% endif %}
+    </div>
 
-  <p>
+    <p class="post-description">
     {% if item.description %}
       {{ item.description | safe }}
     {% endif %}
-  </p>
+    </p>
+
+    {% if url %}
+      </a>
+    {% endif %}
+  {% else %}
+    <h2 class="post-title">
+      {% if url %}
+      <a href="{{ url }}" class="clickable-item">
+      {% endif %}
+      {{ title }}
+      {% if url %}
+      </a>
+      {% endif %}
+    </h2>
+
+    <div class="post-meta">
+      {% if published %}
+      <time>
+        {% include "svg/calendar.svg" %}
+        <span>{{ published }}</span>
+      </time>
+      {% endif %}
+    </div>
+
+    <p class="post-description">
+    {% if item.description %}
+      {{ item.description | safe }}
+    {% endif %}
+    </p>
+  {% endif %}
+
 </article>
