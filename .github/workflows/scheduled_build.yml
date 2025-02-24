@@ -1,8 +1,9 @@
 name: Update site
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 2 * * *" # Every day at 2am. Modify this as you see fit
+# Uncomment this section to make the workflow run on schedule: 
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     - cron: "0 2 * * *" # Every day at 2am. Modify this as you see fit
 
 jobs:
   DeploySite:
