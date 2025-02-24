@@ -4,24 +4,6 @@
 
 Alongside the template code, it also contains a GitHub action required to keep the site up to date.
 
-**[View demo](https://eleventy-m10y.lkmt.us/)**
-
-**Project development is primarily done on [GitHub](https://github.com/lwojcik/eleventy-template-multiplicity).** Mirrors of the main branch are also available on [Codeberg](https://codeberg.org/lukem/eleventy-template-multiplicity) and [GitLab](https://gitlab.com/lukaszwojcik/eleventy-template-multiplicity).
-
-## Instant deploy
-
-Netlify:
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/lwojcik/eleventy-template-multiplicity)
-
-Vercel:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/lwojcik/eleventy-template-multiplicity)
-
-Render:
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/lwojcik/eleventy-template-multiplicity)
-
 ## Setup and personalization
 
 1. Fork the repository.
@@ -45,15 +27,6 @@ See [`phrases.js`](./content/_data/phrases.js) for the list of translatable stat
 ## Note on persisting feed cache
 
 The aggregator uses [@11ty/eleventy-fetch](https://www.11ty.dev/docs/plugins/fetch/) plugin for fetching and caching network requests. If you use a hosting provider that supports persisting cache (e.g. Netlify or Vercel), you can limit number of network requests by making your `.cache` folder persistent between builds. See [Eleventy docs on how to set it up](https://www.11ty.dev/docs/deployment/#persisting-cache).
-
-## Contributions
-
-Contributions of the following kind are welcome:
-
-- bug reports / fixes
-- feature suggestions / improvements of existing features
-
-Before contributing be sure to read [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ## Sponsors
 
